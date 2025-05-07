@@ -38,5 +38,5 @@ This is the Express-based server for **Pro Gear**, handling authentication, equi
 
 ## 🧑‍💻 Developer
 
-Developed by [Mehedi Hasan]  
-📫 Contact: mhasan2999@gmail.com  
+Developed by [Moinul Hasan]  
+📫 Contact: moinulh.msn@gmail.com  
