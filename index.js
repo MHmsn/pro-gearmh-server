@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json())
 
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.98i8c23.mongodb.net;`
-
+const uri = `mongodb+srv://mhmsn:mhmsn@cluster0.98i8c23.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+//${process.env.DB_USER}:${process.env.DB_PASS}
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -25,11 +25,10 @@ const client = new MongoClient(uri, {
   async function run() {
     try {
       // Connect the client to the servers (optional starting in v4.7)
-    //   await client.connect();
+       await client.connect();
   
       const equipmentCollection = client.db('sportDB').collection('equipment');
       const userCollection = client.db('sportDB').collection('users');
-      console.log(userCollection)
       app.get('/equipment', async(req,res)=>{
           const sortOrder = parseInt(req.query.sortOrder) || 1;
           const cursor = equipmentCollection.find().sort({ price: sortOrder });
@@ -103,8 +102,8 @@ const client = new MongoClient(uri, {
       }) 
   
       // Send a ping to confirm a successful connection
-      // await client.db("admin").command({ ping: 1 });
-    //   console.log("Pinged your deployment. You successfully connected to MongoDB!");
+      await client.db("admin").command({ ping: 1 });
+      console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
       // Ensures that the client will close when you finish/error
       // await client.close();
